@@ -1,0 +1,68 @@
+version: '3.8' 
+services:
+
+  mighty_1:
+    build: mighty/.
+    container_name: mighty_1
+    environment:
+      - "MIGHTY_PORT=5050"
+    expose:
+      - 5050
+    ports:
+      - 5050:5050
+    networks:
+      - neural_solr_net
+
+  mighty_2:
+    build: mighty/.
+    container_name: mighty_2
+    environment:
+      - "MIGHTY_PORT=5051"
+    expose:
+      - 5051
+    ports:
+      - 5051:5051
+    networks:
+      - neural_solr_net
+
+  solr:
+    build:
+      context: solr/.
+      dockerfile: Dockerfile
+    container_name: neural_solr
+    ports:
+      - 8983:8983 
+    environment:
+      - ZK_HOST=neural_zk:2181
+      - SOLR_HOST=0.0.0.0
+    networks:
+      - neural_solr_net
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: zookeeper:3.5.5
+    container_name: neural_zk
+    hostname: neural_zk
+    ports: 
+      - 2181:2128
+    networks:
+      - neural_solr_net
+
+  search_app:
+    build: app/.
+    container_name: search_app
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    networks:
+      - neural_solr_net
+    depends_on:
+      - mighty_1
+      - mighty_2
+      - neural_zk
+      - neural_solr
+
+networks:
+  neural_solr_net:

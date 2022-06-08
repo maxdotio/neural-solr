@@ -1,0 +1,23 @@
+{
+  "name": "neural-solr",
+  "version": "1.0.0",
+  "description": "Instant neural search for Solr 9, using Mighty Inference!",
+  "main": "app.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Max Irwin",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^9.1.0",
+    "express": "^4.17.3",
+    "html-entities": "^2.3.3",
+    "node-mighty": "^2.0.0",
+    "progress": "^2.0.3",
+    "solr-client": "^0.10.0-rc10",
+    "string-strip-html": "^9.1.7",
+    "uuid": "^8.3.2",
+    "xml2js": "^0.4.23"
+  }
+}
