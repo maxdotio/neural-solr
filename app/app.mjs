@@ -39,13 +39,17 @@ app.get("/solr/:site/:handler", async function (req, res) {
             let url = `http://risa:8983/solr/${req.params.site}/${req.params.handler}`
             let vector = mighty_res.response.outputs[0];
             let vq = JSON.stringify(vector);
-            q = q.replace(re_mighty,vq);
-            fetch(url,{method: 'POST',body: q, headers: {"Content-Type":"application/x-www-form-urlencoded"}})
+            let body = q.replace(re_mighty,vq);
+            fetch(url,{
+                method: 'POST', 
+                body: body, 
+                headers: {"Content-Type":"application/x-www-form-urlencoded"}
+            })
               .then(
                 result =>
                   new Promise((resolve, reject) => {
                     result.body.pipe(res);
-                    result.body.on("end", () => resolve("sent"));
+                    result.body.on("end", () => resolve(search));
                     res.on("error", reject);
                   })
               )

@@ -12,6 +12,12 @@ then
     exit
 fi
 
+export NEURAL_HOST=$3
+if [ -z "$3" ]
+then
+    export NEURAL_HOST=localhost
+fi
+
 s=$(which mighty-batch)
 if [ "$s" = "" ];
 then
@@ -21,5 +27,5 @@ then
     cd ..    
 fi
 
-mighty-batch --threads 1 --workers 2 --sitemap $2 --property text
-node tools/load.js --sitemap $2 --name $1
+#mighty-batch --threads 1 --workers 2 --sitemap $2 --property text --host $NEURAL_HOST
+node tools/load.js --sitemap $2 --name $1 --host $NEURAL_HOST

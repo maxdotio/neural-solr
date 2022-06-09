@@ -215,8 +215,8 @@ function get_documents(files,ignore) {
                     //Each document body might have been split up if it was long.
                     //We'll create a separate point for each part of the vectorized content.
                     for(var v=0;v<vec.length;v++) {
-
-                        let vector = vec[v];
+                        let precision = 1000000;
+                        let vector = vec[v].map(f32=>Math.floor(f32*precision)/precision);
                         let text = txt[v];
                         let docid = doc.docid + "_" + v;
                         
@@ -258,3 +258,5 @@ for(var p=0;p<documents.length;p+=batch_size) {
     const obj = await client.add(batch);
     bar.tick();
 }
+
+let commit = await request(`http://${host}:8983/solr/${site}/update?commit=true`);
