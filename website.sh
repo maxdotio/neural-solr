@@ -27,5 +27,5 @@ then
     cd ..    
 fi
 
-#mighty-batch --threads 1 --workers 2 --sitemap $2 --property text --host $NEURAL_HOST
+mighty-batch --threads 1 --workers 2 --sitemap $2 --property text --host $NEURAL_HOST
 node tools/load.js --sitemap $2 --name $1 --host $NEURAL_HOST

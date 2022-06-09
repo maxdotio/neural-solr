@@ -18,6 +18,8 @@ Simply clone this repository, then start the servers with `docker compose up` (o
 
 You may inspect the `docker-compose.yaml` file to understand how Solr, Zookeeper, Mighty, and the Node app are configured.
 
+_Note: The SolrCloud will take about a minute to start up._
+
 ## Index a website from a sitemap!
 
 Scrape and index any website that has a sitemap.xml file available.  Simply run the following:

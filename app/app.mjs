@@ -7,8 +7,7 @@ import { MightyPool } from "node-mighty";
 ///
 /// Mighty  Connections
 ///
-//const mighty = new MightyPool(["http://mighty_1:5050","http://mighty_2:5051"],"sentence-transformers");
-const mighty = new MightyPool(["http://risa:5050","http://risa:5051"],"sentence-transformers");
+const mighty = new MightyPool(["http://mighty_1:5050","http://mighty_2:5051"],"sentence-transformers");
 
 //Query parser RegEx
 const re_mighty = /\{\!mighty([^\}]+)\}/g;
@@ -36,7 +35,7 @@ app.get("/solr/:site/:handler", async function (req, res) {
         if (mighty_res.err) {
             res.status(500).send(mighty_res.err);
         } else {
-            let url = `http://risa:8983/solr/${req.params.site}/${req.params.handler}`
+            let url = `http://neural_solr:8983/solr/${req.params.site}/${req.params.handler}`
             let vector = mighty_res.response.outputs[0];
             let vq = JSON.stringify(vector);
             let body = q.replace(re_mighty,vq);
