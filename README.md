@@ -1,6 +1,6 @@
 # Neural Solr
 
-<img src="assets/logo.png" height="128" /> <img src="assets/solr.png" height="128" />
+<img src="assets/solr.png" height="128" /> <img src="assets/logo.png" height="128" />
 
 This project provides a complete and working semantic search application, using [Mighty Inference Server](https://max.io), [Apache Solr v9](https://solr.apache.org), and an example Node.js express application.
 
@@ -76,7 +76,7 @@ It is recommended to look at app/app.mjs and understand how the query processor 
 
 Use it with Splainer!
 
-<img src="assets/solr.png" height="128" />
+<img src="assets/splainer.png" />
 
 http://splainer.io/#?solr=http:%2F%2Flocalhost:8000%2Fsolr%2Fmicrosoft_ai%2Fselect%3Fq%3D%7B!knn%20f%3Dvector%20topK%3D10%7D%7B!mighty%20future%20of%20robotics%7D%26fl%3Dtitle_txt_en%20text_txt_en%20url_s%20author_s&fieldSpec=title:title_txt_en,text_txt_en,url_s,author_s
 
